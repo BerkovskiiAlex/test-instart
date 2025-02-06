@@ -1,11 +1,15 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSeminarsThunk, deleteSeminarThunk } from "./operations";
+import {
+  fetchSeminarsThunk,
+  deleteSeminarThunk,
+  updateSeminarThunk,
+} from "./operations";
 
 const initialState = {
   seminars: [],
-  seminarModal: null,
+  seminarForEdit: null,
   isModalOpen: false,
 };
 
@@ -18,12 +22,10 @@ const seminarsSlice = createSlice({
     },
     setIsModalClose: (state, { payload }) => {
       state.isModalOpen = payload;
+      state.seminarForEdit = null;
     },
-    addToSeminarModal: (state, { payload }) => {
-      const seminar = state.seminars.find((seminar) => seminar.id === payload);
-      if (seminar) {
-        state.seminarModal = seminar;
-      }
+    setSeminarForEdit: (state, { payload }) => {
+      state.seminarForEdit = payload;
     },
   },
   extraReducers: (builder) => {
@@ -35,10 +37,21 @@ const seminarsSlice = createSlice({
         state.seminars = state.seminars.filter(
           (seminar) => seminar.id !== payload.id
         );
+      })
+      .addCase(updateSeminarThunk.fulfilled, (state, { payload }) => {
+        const index = state.seminars.findIndex(
+          (seminar) => seminar.id === payload.id
+        );
+        if (index !== -1) {
+          state.seminars[index] = payload;
+        }
+      })
+      .addCase(updateSeminarThunk.rejected, (state, { payload }) => {
+        console.error("Error updating seminar:", payload);
       });
   },
 });
 
-export const { setIsModalOpen, setIsModalClose, addToSeminarModal } =
+export const { setIsModalOpen, setIsModalClose, setSeminarForEdit } =
   seminarsSlice.actions;
 export const seminarsReducer = seminarsSlice.reducer;

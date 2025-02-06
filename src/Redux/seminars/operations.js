@@ -30,3 +30,18 @@ export const deleteSeminarThunk = createAsyncThunk(
     }
   }
 );
+
+export const updateSeminarThunk = createAsyncThunk(
+  "seminars/updateSeminar",
+  async (updatedSeminar, thunkAPI) => {
+    try {
+      const res = await seminarsInstance.put(
+        `/seminars/${updatedSeminar.id}`,
+        updatedSeminar
+      );
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -6,12 +6,18 @@ import {
   fetchSeminarsThunk,
   deleteSeminarThunk,
 } from "../../Redux/seminars/operations";
-import { getSeminars } from "../../Redux/seminars/selectors";
+import { getSeminars, getIsModalOpen } from "../../Redux/seminars/selectors";
+import {
+  setIsModalOpen,
+  setSeminarForEdit,
+} from "../../Redux/seminars/seminarsSlice";
+import Modal from "../../components/Modal/Modal";
 import "./Home.css";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const seminars = useSelector(getSeminars);
+  const isModalOpen = useSelector(getIsModalOpen);
 
   const [showModal, setShowModal] = useState(false);
   const [seminarToDelete, setSeminarToDelete] = useState(null);
@@ -36,6 +42,11 @@ export const Home = () => {
     setShowModal(false);
   };
 
+  const handleEdit = (seminar) => {
+    dispatch(setSeminarForEdit(seminar));
+    dispatch(setIsModalOpen(true));
+  };
+
   return (
     <section>
       <h2>Семинары</h2>
@@ -55,6 +66,14 @@ export const Home = () => {
             >
               Удалить
             </button>
+            <button
+              onClick={() => {
+                handleEdit(seminar);
+              }}
+              aria-label={`Редактировать семинар ${seminar.title}`}
+            >
+              Редактировать
+            </button>
           </li>
         ))}
       </ul>
@@ -64,7 +83,6 @@ export const Home = () => {
             <h3>Вы уверены, что хотите удалить этот семинар?</h3>
             <button
               onClick={() => {
-                console.log("Confirm button clicked");
                 confirmDelete();
               }}
             >
@@ -74,6 +92,7 @@ export const Home = () => {
           </div>
         </div>
       )}
+      {isModalOpen && <Modal />}
     </section>
   );
 };
