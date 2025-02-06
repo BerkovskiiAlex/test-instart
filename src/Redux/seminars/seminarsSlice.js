@@ -1,7 +1,7 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSeminarsThunk } from "./operations";
+import { fetchSeminarsThunk, deleteSeminarThunk } from "./operations";
 
 const initialState = {
   seminars: [],
@@ -27,9 +27,15 @@ const seminarsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSeminarsThunk.fulfilled, (state, { payload }) => {
-      state.seminars = payload;
-    });
+    builder
+      .addCase(fetchSeminarsThunk.fulfilled, (state, { payload }) => {
+        state.seminars = payload;
+      })
+      .addCase(deleteSeminarThunk.fulfilled, (state, { payload }) => {
+        state.seminars = state.seminars.filter(
+          (seminar) => seminar.id !== payload.id
+        );
+      });
   },
 });
 

@@ -18,3 +18,15 @@ export const fetchSeminarsThunk = createAsyncThunk(
     }
   }
 );
+
+export const deleteSeminarThunk = createAsyncThunk(
+  "seminars/deleteSeminar",
+  async (id, thunkAPI) => {
+    try {
+      const res = await seminarsInstance.delete(`/seminars/${id}`);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
