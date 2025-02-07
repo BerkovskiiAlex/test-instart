@@ -49,7 +49,12 @@ export const Home = () => {
 
   return (
     <section>
-      <h2>Семинары</h2>
+      <header>
+        <h1>
+          Добро пожаловать в тестовое задание Берковского Алексея для компании
+          ITStart.
+        </h1>
+      </header>
       <ul>
         {seminars.map((seminar) => (
           <li key={seminar.id}>
@@ -57,7 +62,10 @@ export const Home = () => {
             <p>{seminar.description}</p>
             <p>Дата: {seminar.date}</p>
             <p>Время: {seminar.time}</p>
-            <img src={seminar.photo} alt={seminar.title}></img>
+            <img
+              src={seminar.photo}
+              alt={`Фото семинара ${seminar.title}`}
+            ></img>
             <button
               onClick={() => {
                 handleDelete(seminar.id);

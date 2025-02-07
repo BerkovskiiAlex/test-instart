@@ -33,11 +33,11 @@ export const deleteSeminarThunk = createAsyncThunk(
 
 export const updateSeminarThunk = createAsyncThunk(
   "seminars/updateSeminar",
-  async (updatedSeminar, thunkAPI) => {
+  async (editedSeminar, thunkAPI) => {
     try {
       const res = await seminarsInstance.put(
-        `/seminars/${updatedSeminar.id}`,
-        updatedSeminar
+        `/seminars/${editedSeminar.id}`,
+        editedSeminar
       );
       return res.data;
     } catch (error) {

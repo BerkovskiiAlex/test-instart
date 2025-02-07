@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsModalClose } from "../../Redux/seminars/seminarsSlice";
 import { getSeminarForEdit } from "../../Redux/seminars/selectors";
 import { updateSeminarThunk } from "../../Redux/seminars/operations";
-import { StyledCloseIcon } from "./ModalForm.styled";
+import { StyledCloseIcon, StyledModalSection } from "./ModalForm.styled";
 
 export const ModalForm = () => {
   const dispatch = useDispatch();
@@ -36,16 +36,15 @@ export const ModalForm = () => {
   };
 
   return (
-    <section>
+    <StyledModalSection>
       <StyledCloseIcon onClick={handleClose} />
       {seminarForEdit && (
-        <div className="modal-content">
+        <div>
           <h3>Редактировать семинар</h3>
           <form>
             <label>
               Название:
-              <input
-                type="text"
+              <textarea
                 name="title"
                 value={editedSeminar.title || ""}
                 onChange={handleChange}
@@ -77,6 +76,15 @@ export const ModalForm = () => {
                 onChange={handleChange}
               />
             </label>
+            <label>
+              Ссылка на фото:
+              <input
+                type="text"
+                name="photo"
+                value={editedSeminar.photo || ""}
+                onChange={handleChange}
+              />
+            </label>
             <button type="button" onClick={handleSave}>
               Сохранить
             </button>
@@ -86,6 +94,6 @@ export const ModalForm = () => {
           </form>
         </div>
       )}
-    </section>
+    </StyledModalSection>
   );
 };
