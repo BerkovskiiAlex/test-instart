@@ -10,7 +10,8 @@ export const StyledModalSection = styled.section`
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   width: 540px;
   min-height: 500px;
-  @media screen and (max-width: 560px) {
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    /* Стили для планшетов */
   }
 `;
 

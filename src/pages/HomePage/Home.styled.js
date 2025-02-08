@@ -8,6 +8,9 @@ export const StyledHomeSection = styled.section`
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(48, 59, 68);
   border-radius: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    max-width: 748px;
+  }
 `;
 
 export const StyledHomeHeader = styled.header`
@@ -29,16 +32,27 @@ export const StyledHomeUl = styled.ul`
   margin: 24px 40px 0;
   padding-bottom: 24px;
   gap: 28px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    gap: 52px;
+  }
 `;
 
 export const StyledHomeLi = styled.li`
   display: flex;
   gap: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const StyledHomeImg = styled.img`
   width: 400px;
   height: 400px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    width: 708px;
+    height: 708px;
+  }
 `;
 
 export const StyledHomeContentDiv = styled.div`
@@ -46,10 +60,16 @@ export const StyledHomeContentDiv = styled.div`
   flex-direction: column;
   gap: 16px;
   margin: auto;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    gap: 12px;
+  }
 `;
 
 export const StyledHomeContentH2 = styled.h2`
   font-size: 28px;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    text-align: center;
+  }
 `;
 
 export const StyledHomeContentP = styled.p`
