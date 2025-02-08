@@ -12,7 +12,26 @@ import {
   setSeminarForEdit,
 } from "../../Redux/seminars/seminarsSlice";
 import Modal from "../../components/Modal/Modal";
-import "./Home.css";
+import {
+  StyledHomeContentDiv,
+  StyledHomeH1,
+  StyledHomeContentH2,
+  StyledHomeHeader,
+  StyledHomeImg,
+  StyledHomeLi,
+  StyledHomeSection,
+  StyledHomeUl,
+  StyledHomeContentP,
+  StyledHomeContentButtonDiv,
+  StyledHomeContentDeleteButton,
+  StyledHomeContentEditButton,
+  StyledHomeModalContentYesButton,
+  StyledHomeModalContentNoButton,
+  StyledHomeModalDiv,
+  StyledHomeModalContentDiv,
+  StyledHomeModalContentH3,
+  StyledHomeModalContentButtonDiv,
+} from "./Home.styled";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -48,59 +67,69 @@ export const Home = () => {
   };
 
   return (
-    <section>
-      <header>
-        <h1>
+    <StyledHomeSection>
+      <StyledHomeHeader>
+        <StyledHomeH1>
           Добро пожаловать в тестовое задание Берковского Алексея для компании
           ITStart.
-        </h1>
-      </header>
-      <ul>
+        </StyledHomeH1>
+      </StyledHomeHeader>
+      <StyledHomeUl>
         {seminars.map((seminar) => (
-          <li key={seminar.id}>
-            <h3>{seminar.title}</h3>
-            <p>{seminar.description}</p>
-            <p>Дата: {seminar.date}</p>
-            <p>Время: {seminar.time}</p>
-            <img
+          <StyledHomeLi key={seminar.id}>
+            <StyledHomeImg
               src={seminar.photo}
               alt={`Фото семинара ${seminar.title}`}
-            ></img>
-            <button
-              onClick={() => {
-                handleDelete(seminar.id);
-              }}
-              aria-label={`Удалить семинар ${seminar.title}`}
-            >
-              Удалить
-            </button>
-            <button
-              onClick={() => {
-                handleEdit(seminar);
-              }}
-              aria-label={`Редактировать семинар ${seminar.title}`}
-            >
-              Редактировать
-            </button>
-          </li>
+            ></StyledHomeImg>
+            <StyledHomeContentDiv>
+              <StyledHomeContentH2>{seminar.title}</StyledHomeContentH2>
+              <StyledHomeContentP>{seminar.description}</StyledHomeContentP>
+              <StyledHomeContentP>Дата: {seminar.date}</StyledHomeContentP>
+              <StyledHomeContentP>Время: {seminar.time}</StyledHomeContentP>
+              <StyledHomeContentButtonDiv>
+                <StyledHomeContentEditButton
+                  onClick={() => {
+                    handleEdit(seminar);
+                  }}
+                  aria-label={`Редактировать семинар ${seminar.title}`}
+                >
+                  Редактировать
+                </StyledHomeContentEditButton>
+                <StyledHomeContentDeleteButton
+                  onClick={() => {
+                    handleDelete(seminar.id);
+                  }}
+                  aria-label={`Удалить семинар ${seminar.title}`}
+                >
+                  Удалить
+                </StyledHomeContentDeleteButton>
+              </StyledHomeContentButtonDiv>
+            </StyledHomeContentDiv>
+          </StyledHomeLi>
         ))}
-      </ul>
+      </StyledHomeUl>
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>Вы уверены, что хотите удалить этот семинар?</h3>
-            <button
-              onClick={() => {
-                confirmDelete();
-              }}
-            >
-              Да
-            </button>
-            <button onClick={cancelDelete}>Нет</button>
-          </div>
-        </div>
+        <StyledHomeModalDiv>
+          <StyledHomeModalContentDiv>
+            <StyledHomeModalContentH3>
+              Вы уверены, что хотите удалить этот семинар?
+            </StyledHomeModalContentH3>
+            <StyledHomeModalContentButtonDiv>
+              <StyledHomeModalContentYesButton
+                onClick={() => {
+                  confirmDelete();
+                }}
+              >
+                Да
+              </StyledHomeModalContentYesButton>
+              <StyledHomeModalContentNoButton onClick={cancelDelete}>
+                Нет
+              </StyledHomeModalContentNoButton>
+            </StyledHomeModalContentButtonDiv>
+          </StyledHomeModalContentDiv>
+        </StyledHomeModalDiv>
       )}
       {isModalOpen && <Modal />}
-    </section>
+    </StyledHomeSection>
   );
 };

@@ -26,6 +26,7 @@ blockquote,
 dl,
 dd {
   margin: 0;
+  font-size: 1em;
 
 }
 
@@ -52,6 +53,8 @@ ol {
 
 body {
   font-family: Manrope;
+  background-color: rgb(238 238 238);
+
 }
 
 

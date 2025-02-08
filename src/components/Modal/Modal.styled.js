@@ -12,6 +12,4 @@ export const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(18, 20, 23, 0.5);
-  overflow: hidden;
-  z-index: 999;
 `;

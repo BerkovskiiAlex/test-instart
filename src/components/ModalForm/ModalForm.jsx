@@ -5,7 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsModalClose } from "../../Redux/seminars/seminarsSlice";
 import { getSeminarForEdit } from "../../Redux/seminars/selectors";
 import { updateSeminarThunk } from "../../Redux/seminars/operations";
-import { StyledCloseIcon, StyledModalSection } from "./ModalForm.styled";
+import {
+  StyledCloseIcon,
+  StyledModalSection,
+  StyledModalDiv,
+  StyledModalH3,
+  StyledModalForm,
+  StyledModalLabel,
+  StyledModalTextarea,
+  StyledModalCancelButton,
+  StyledModalSaveButton,
+  StyledModalButtonDiv,
+} from "./ModalForm.styled";
 
 export const ModalForm = () => {
   const dispatch = useDispatch();
@@ -39,60 +50,67 @@ export const ModalForm = () => {
     <StyledModalSection>
       <StyledCloseIcon onClick={handleClose} />
       {seminarForEdit && (
-        <div>
-          <h3>Редактировать семинар</h3>
-          <form>
-            <label>
+        <StyledModalDiv>
+          <StyledModalH3>Редактирование семинара</StyledModalH3>
+          <StyledModalForm>
+            <StyledModalLabel>
               Название:
-              <textarea
+              <StyledModalTextarea
                 name="title"
                 value={editedSeminar.title || ""}
                 onChange={handleChange}
+                placeholder="Введите текст..."
               />
-            </label>
-            <label>
+            </StyledModalLabel>
+            <StyledModalLabel>
               Описание:
-              <textarea
+              <StyledModalTextarea
                 name="description"
                 value={editedSeminar.description || ""}
                 onChange={handleChange}
+                placeholder="Введите текст..."
               />
-            </label>
-            <label>
+            </StyledModalLabel>
+            <StyledModalLabel>
               Дата:
               <input
                 type="text"
                 name="date"
                 value={editedSeminar.date || ""}
                 onChange={handleChange}
+                placeholder="Введите дату..."
               />
-            </label>
-            <label>
+            </StyledModalLabel>
+            <StyledModalLabel>
               Время:
               <input
                 type="text"
                 name="time"
                 value={editedSeminar.time || ""}
                 onChange={handleChange}
+                placeholder="Введите время..."
               />
-            </label>
-            <label>
+            </StyledModalLabel>
+            <StyledModalLabel>
               Ссылка на фото:
               <input
                 type="text"
                 name="photo"
                 value={editedSeminar.photo || ""}
                 onChange={handleChange}
+                placeholder="Введите ссылку на фото..."
               />
-            </label>
-            <button type="button" onClick={handleSave}>
-              Сохранить
-            </button>
-            <button type="button" onClick={handleClose}>
-              Отмена
-            </button>
-          </form>
-        </div>
+            </StyledModalLabel>
+            <StyledModalButtonDiv>
+              <StyledModalSaveButton type="button" onClick={handleSave}>
+                Сохранить
+              </StyledModalSaveButton>
+              <StyledModalCancelButton type="button" onClick={handleClose}>
+                Отмена
+              </StyledModalCancelButton>
+            </StyledModalButtonDiv>
+          </StyledModalForm>
+        </StyledModalDiv>
       )}
     </StyledModalSection>
   );

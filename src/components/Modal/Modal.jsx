@@ -11,6 +11,7 @@ const modalRoot = document.querySelector("#modal-root");
 
 const Modal = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
