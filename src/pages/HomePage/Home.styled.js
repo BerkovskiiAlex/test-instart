@@ -11,6 +11,10 @@ export const StyledHomeSection = styled.section`
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     max-width: 748px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 310px;
+    border-radius: 10px;
+  }
 `;
 
 export const StyledHomeHeader = styled.header`
@@ -19,6 +23,12 @@ export const StyledHomeHeader = styled.header`
   text-align: center;
   background-color: rgb(48, 59, 68);
   border-radius: 18px 18px 0 0;
+  @media screen and (max-width: 767px) {
+    padding: 10px 20px;
+    font-size: 24px;
+    max-width: 310px;
+    border-radius: 8px;
+  }
 `;
 
 export const StyledHomeH1 = styled.h1`
@@ -35,6 +45,10 @@ export const StyledHomeUl = styled.ul`
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     gap: 52px;
   }
+  @media screen and (max-width: 767px) {
+    margin: 24px 14px 0;
+    gap: 52px;
+  }
 `;
 
 export const StyledHomeLi = styled.li`
@@ -44,6 +58,11 @@ export const StyledHomeLi = styled.li`
     flex-direction: column;
     align-items: center;
   }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 `;
 
 export const StyledHomeImg = styled.img`
@@ -52,6 +71,10 @@ export const StyledHomeImg = styled.img`
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     width: 708px;
     height: 708px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 280px;
   }
 `;
 
@@ -63,6 +86,9 @@ export const StyledHomeContentDiv = styled.div`
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     gap: 12px;
   }
+  @media screen and (max-width: 767px) {
+    gap: 8px;
+  }
 `;
 
 export const StyledHomeContentH2 = styled.h2`
@@ -70,17 +96,27 @@ export const StyledHomeContentH2 = styled.h2`
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     text-align: center;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
+  }
 `;
 
 export const StyledHomeContentP = styled.p`
   font-size: 18px;
   width: 598px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    font-size: 12px;
+  }
 `;
 
 export const StyledHomeContentButtonDiv = styled.div`
   display: flex;
   margin: 0 auto;
   gap: 24px;
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
 `;
 
 export const StyledHomeContentDeleteButton = styled.button`
@@ -95,10 +131,15 @@ export const StyledHomeContentDeleteButton = styled.button`
     background-color: rgb(211 47 47);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
+  @media screen and (max-width: 767px) {
+    padding: 6px;
+    font-size: 10px;
+    border-radius: 4px;
+  }
 `;
 
 export const StyledHomeContentEditButton = styled.button`
-  background-color: #ffca28; /* Тёплый жёлтый */
+  background-color: rgb(255 202 40);
   color: black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: none;
@@ -107,14 +148,18 @@ export const StyledHomeContentEditButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   &:hover {
-    background-color: #ffb300; /* Темнее желтый при наведении */
+    background-color: rgb(255 179 0);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (max-width: 767px) {
+    padding: 6px;
+    font-size: 10px;
+    border-radius: 4px;
   }
 `;
 
 export const StyledHomeModalDiv = styled.div`
   position: fixed;
-
   top: 0;
   left: 0;
   width: 100%;
@@ -133,16 +178,25 @@ export const StyledHomeModalContentDiv = styled.div`
   border-radius: 4px;
   text-align: center;
   gap: 12px;
+  @media screen and (max-width: 767px) {
+    margin: 0 10px;
+  }
 `;
 
 export const StyledHomeModalContentH3 = styled.h3`
   font-size: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const StyledHomeModalContentButtonDiv = styled.div`
   margin: 0 auto;
   display: flex;
   gap: 40px;
+  @media screen and (max-width: 767px) {
+    gap: 20px;
+  }
 `;
 
 export const StyledHomeModalContentYesButton = styled.button`
@@ -158,6 +212,10 @@ export const StyledHomeModalContentYesButton = styled.button`
     background-color: rgb(69 160 73);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
+  @media screen and (max-width: 767px) {
+    font-size: 10px;
+    border-radius: 4px;
+  }
 `;
 
 export const StyledHomeModalContentNoButton = styled.button`
@@ -171,5 +229,9 @@ export const StyledHomeModalContentNoButton = styled.button`
   &:hover {
     background-color: rgb(211 47 47);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 10px;
+    border-radius: 4px;
   }
 `;

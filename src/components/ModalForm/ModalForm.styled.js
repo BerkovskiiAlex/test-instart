@@ -9,9 +9,8 @@ export const StyledModalSection = styled.section`
   background: #ffffff;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   width: 540px;
-  min-height: 500px;
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
-    /* Стили для планшетов */
+  @media screen and (max-width: 767px) {
+    width: 280px;
   }
 `;
 
@@ -28,12 +27,19 @@ export const StyledModalDiv = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin: 48px;
+  @media screen and (max-width: 767px) {
+    margin: 50px 20px;
+  }
 `;
 
 export const StyledModalH3 = styled.h3`
   width: 444px;
   text-align: center;
   font-size: 24px;
+  @media screen and (max-width: 767px) {
+    width: 240px;
+    font-size: 16px;
+  }
 `;
 
 export const StyledModalForm = styled.form`
@@ -42,6 +48,11 @@ export const StyledModalForm = styled.form`
   width: 444px;
   margin-top: 28px;
   gap: 20px;
+  @media screen and (max-width: 767px) {
+    width: 240px;
+    margin-top: 20px;
+    gap: 12px;
+  }
 `;
 
 export const StyledModalLabel = styled.label`
@@ -49,11 +60,18 @@ export const StyledModalLabel = styled.label`
   flex-direction: column;
   text-align: center;
   gap: 8px;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    gap: 6px;
+  }
 `;
 
 export const StyledModalTextarea = styled.textarea`
   height: 50px;
   resize: none;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const StyledModalButtonDiv = styled.div`
@@ -75,6 +93,11 @@ export const StyledModalSaveButton = styled.button`
     background-color: rgb(69 160 73);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
+  @media screen and (max-width: 767px) {
+    padding: 6px;
+    font-size: 10px;
+    border-radius: 4px;
+  }
 `;
 
 export const StyledModalCancelButton = styled.button`
@@ -88,5 +111,10 @@ export const StyledModalCancelButton = styled.button`
   &:hover {
     background-color: rgb(211 47 47);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (max-width: 767px) {
+    padding: 6px;
+    font-size: 10px;
+    border-radius: 4px;
   }
 `;
