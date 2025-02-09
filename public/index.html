@@ -4,25 +4,50 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- Фавикон для разных разрешений (16x16, 32x32 и 48x48) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico" />
+    <!-- Фавикон для Android устройств (разрешения 192x192 и 512x512) -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/android-chrome-512x512.png"
+    />
+    <!-- Иконка для Apple устройств -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Адаптивность страницы -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <!-- Описание сайта для поисковых систем -->
     <meta
       name="description"
       content="The website was created by Berkovskii Aleksei as a test task for the ITStart campaign."
     />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Seminars</title>
+    <!-- Предварительное подключение к сервисам Google Fonts для ускорения загрузки шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Подключение шрифта Manrope с толщинами 400 и 700 -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Montserrat:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Файл сброса стилей для унификации стилизации на разных браузерах -->
     <link rel="stylesheet" href="/reset.css" />
   </head>
   <body>
+    <!-- Контейнер для всего React-приложения -->
     <div id="root"></div>
+    <!-- Контейнер для модального окна -->
     <div id="modal-root"></div>
   </body>
 </html>

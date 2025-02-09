@@ -1,17 +1,17 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; // Импортируем функции из Redux для работы с состоянием
 import {
   fetchSeminarsThunk,
   deleteSeminarThunk,
-} from "../../Redux/seminars/operations";
-import { getSeminars, getIsModalOpen } from "../../Redux/seminars/selectors";
+} from "../../Redux/seminars/operations"; // Операции для работы с семинарами в Redux
+import { getSeminars, getIsModalOpen } from "../../Redux/seminars/selectors"; // Селекторы для доступа к данным из Redux
 import {
   setIsModalOpen,
   setSeminarForEdit,
-} from "../../Redux/seminars/seminarsSlice";
-import Modal from "../../components/Modal/Modal";
+} from "../../Redux/seminars/seminarsSlice"; // Слайс для управления состоянием семинаров
+import Modal from "../../components/Modal/Modal"; // Модальный компонент для редактирования
 import {
   StyledHomeContentDiv,
   StyledHomeH1,
@@ -31,49 +31,53 @@ import {
   StyledHomeModalContentDiv,
   StyledHomeModalContentH3,
   StyledHomeModalContentButtonDiv,
-} from "./Home.styled";
+} from "./Home.styled"; // Стили для компонента
 
 export const Home = () => {
-  const dispatch = useDispatch();
-  const seminars = useSelector(getSeminars);
-  const isModalOpen = useSelector(getIsModalOpen);
+  const dispatch = useDispatch(); // Dispatch для отправки действий в Redux
+  const seminars = useSelector(getSeminars); // Селектор для получения списка семинаров
+  const isModalOpen = useSelector(getIsModalOpen); // Селектор для контроля состояния модального окна
 
-  const [showModal, setShowModal] = useState(false);
-  const [seminarToDelete, setSeminarToDelete] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Локальное состояние для отображения модального окна подтверждения удаления
+  const [seminarToDelete, setSeminarToDelete] = useState(null); // Локальное состояние для хранения ID семинара, который нужно удалить
 
+  // Хук useEffect, который загружает данные о семинарах при монтировании компонента
   useEffect(() => {
-    dispatch(fetchSeminarsThunk());
+    dispatch(fetchSeminarsThunk()); // Диспатчим action для загрузки семинаров
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    setSeminarToDelete(id);
-    setShowModal(true);
+    setSeminarToDelete(id); // Устанавливаем ID семинара, который будем удалять
+    setShowModal(true); // Показываем модальное окно подтверждения удаления
   };
 
   const confirmDelete = () => {
     if (seminarToDelete) {
-      dispatch(deleteSeminarThunk(seminarToDelete));
+      dispatch(deleteSeminarThunk(seminarToDelete)); // Отправляем action для удаления семинара
     }
-    setShowModal(false);
+    setShowModal(false); // Закрываем модальное окно после удаления
   };
 
+  // Функция для отмены удаления
   const cancelDelete = () => {
-    setShowModal(false);
+    setShowModal(false); // Просто закрываем модальное окно, не удаляя семинар
   };
 
   const handleEdit = (seminar) => {
-    dispatch(setSeminarForEdit(seminar));
-    dispatch(setIsModalOpen(true));
+    dispatch(setSeminarForEdit(seminar)); // Устанавливаем семинар, который нужно редактировать
+    dispatch(setIsModalOpen(true)); // Открываем модальное окно для редактирования
   };
 
   return (
     <StyledHomeSection>
+      {/* Заголовок страницы */}
       <StyledHomeHeader>
         <StyledHomeH1>
           Добро пожаловать в тестовое задание Берковского Алексея для компании
           ITStart.
         </StyledHomeH1>
       </StyledHomeHeader>
+      {/* Список всех семинаров */}
       <StyledHomeUl>
         {seminars.map((seminar) => (
           <StyledHomeLi key={seminar.id}>
@@ -89,7 +93,7 @@ export const Home = () => {
               <StyledHomeContentButtonDiv>
                 <StyledHomeContentEditButton
                   onClick={() => {
-                    handleEdit(seminar);
+                    handleEdit(seminar); // Обработчик для редактирования
                   }}
                   aria-label={`Редактировать семинар ${seminar.title}`}
                 >
@@ -97,7 +101,7 @@ export const Home = () => {
                 </StyledHomeContentEditButton>
                 <StyledHomeContentDeleteButton
                   onClick={() => {
-                    handleDelete(seminar.id);
+                    handleDelete(seminar.id); // Обработчик для удаления
                   }}
                   aria-label={`Удалить семинар ${seminar.title}`}
                 >
@@ -108,6 +112,7 @@ export const Home = () => {
           </StyledHomeLi>
         ))}
       </StyledHomeUl>
+      {/* Модальное окно подтверждения удаления */}
       {showModal && (
         <StyledHomeModalDiv>
           <StyledHomeModalContentDiv>
@@ -117,11 +122,12 @@ export const Home = () => {
             <StyledHomeModalContentButtonDiv>
               <StyledHomeModalContentYesButton
                 onClick={() => {
-                  confirmDelete();
+                  confirmDelete(); // Подтверждение удаления
                 }}
               >
                 Да
               </StyledHomeModalContentYesButton>
+              {/* Отмена удаления */}
               <StyledHomeModalContentNoButton onClick={cancelDelete}>
                 Нет
               </StyledHomeModalContentNoButton>
@@ -129,6 +135,7 @@ export const Home = () => {
           </StyledHomeModalContentDiv>
         </StyledHomeModalDiv>
       )}
+      {/* Если модальное окно для редактирования открыто, рендерим компонент Modal */}
       {isModalOpen && <Modal />}
     </StyledHomeSection>
   );
