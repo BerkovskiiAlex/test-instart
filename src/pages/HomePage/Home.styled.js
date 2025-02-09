@@ -31,6 +31,36 @@ export const StyledHomeHeader = styled.header`
   }
 `;
 
+export const LoadingSpinner = styled.div`
+  border: 30px solid #f3f3f3;
+  border-top: 30px solid #3498db;
+  border-radius: 50%;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 280px;
+  }
+`;
+
+export const StyledHomeError = styled.div`
+  text-align: center;
+  padding: 60px;
+  font-size: 60px;
+  color: red;
+`;
+
 export const StyledHomeH1 = styled.h1`
   color: rgb(255, 255, 255);
 `;
@@ -179,6 +209,7 @@ export const StyledHomeModalContentDiv = styled.div`
   text-align: center;
   gap: 12px;
   @media screen and (max-width: 767px) {
+    width: 260px;
     margin: 0 10px;
   }
 `;

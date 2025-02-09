@@ -14,3 +14,11 @@ export const getSeminarForEdit = (state) => {
 export const getIsModalOpen = (state) => {
   return state.seminarsList.isModalOpen;
 };
+
+export const getLoading = (state) => {
+  return state.seminarsList.loading;
+};
+
+export const getError = (state) => {
+  return state.seminarsList.error;
+};

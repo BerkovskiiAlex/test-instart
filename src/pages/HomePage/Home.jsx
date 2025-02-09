@@ -6,7 +6,12 @@ import {
   fetchSeminarsThunk,
   deleteSeminarThunk,
 } from "../../Redux/seminars/operations"; // Операции для работы с семинарами в Redux
-import { getSeminars, getIsModalOpen } from "../../Redux/seminars/selectors"; // Селекторы для доступа к данным из Redux
+import {
+  getSeminars,
+  getIsModalOpen,
+  getLoading,
+  getError,
+} from "../../Redux/seminars/selectors"; // Селекторы для доступа к данным из Redux
 import {
   setIsModalOpen,
   setSeminarForEdit,
@@ -31,12 +36,16 @@ import {
   StyledHomeModalContentDiv,
   StyledHomeModalContentH3,
   StyledHomeModalContentButtonDiv,
+  LoadingSpinner,
+  StyledHomeError,
 } from "./Home.styled"; // Стили для компонента
 
 export const Home = () => {
   const dispatch = useDispatch(); // Dispatch для отправки действий в Redux
   const seminars = useSelector(getSeminars); // Селектор для получения списка семинаров
   const isModalOpen = useSelector(getIsModalOpen); // Селектор для контроля состояния модального окна
+  const loading = useSelector(getLoading); // Селектор для контроля состояния загрузки
+  const error = useSelector(getError); // Селектор для контроля состояния ошибки
 
   const [showModal, setShowModal] = useState(false); // Локальное состояние для отображения модального окна подтверждения удаления
   const [seminarToDelete, setSeminarToDelete] = useState(null); // Локальное состояние для хранения ID семинара, который нужно удалить
@@ -77,41 +86,50 @@ export const Home = () => {
           ITStart.
         </StyledHomeH1>
       </StyledHomeHeader>
+
+      {/* Показываем индикатор загрузки, если данные еще не загружены */}
+      {loading && <LoadingSpinner />}
+      {/* Если произошла ошибка, отображаем сообщение об ошибке */}
+      {error && (
+        <StyledHomeError style={{ color: "red" }}>
+          Ошибка: {error}
+        </StyledHomeError>
+      )}
+
       {/* Список всех семинаров */}
-      <StyledHomeUl>
-        {seminars.map((seminar) => (
-          <StyledHomeLi key={seminar.id}>
-            <StyledHomeImg
-              src={seminar.photo}
-              alt={`Фото семинара ${seminar.title}`}
-            ></StyledHomeImg>
-            <StyledHomeContentDiv>
-              <StyledHomeContentH2>{seminar.title}</StyledHomeContentH2>
-              <StyledHomeContentP>{seminar.description}</StyledHomeContentP>
-              <StyledHomeContentP>Дата: {seminar.date}</StyledHomeContentP>
-              <StyledHomeContentP>Время: {seminar.time}</StyledHomeContentP>
-              <StyledHomeContentButtonDiv>
-                <StyledHomeContentEditButton
-                  onClick={() => {
-                    handleEdit(seminar); // Обработчик для редактирования
-                  }}
-                  aria-label={`Редактировать семинар ${seminar.title}`}
-                >
-                  Редактировать
-                </StyledHomeContentEditButton>
-                <StyledHomeContentDeleteButton
-                  onClick={() => {
-                    handleDelete(seminar.id); // Обработчик для удаления
-                  }}
-                  aria-label={`Удалить семинар ${seminar.title}`}
-                >
-                  Удалить
-                </StyledHomeContentDeleteButton>
-              </StyledHomeContentButtonDiv>
-            </StyledHomeContentDiv>
-          </StyledHomeLi>
-        ))}
-      </StyledHomeUl>
+      {!loading && !error && (
+        <StyledHomeUl>
+          {seminars.map((seminar) => (
+            <StyledHomeLi key={seminar.id}>
+              <StyledHomeImg
+                src={seminar.photo}
+                alt={`Фото семинара ${seminar.title}`}
+              />
+              <StyledHomeContentDiv>
+                <StyledHomeContentH2>{seminar.title}</StyledHomeContentH2>
+                <StyledHomeContentP>{seminar.description}</StyledHomeContentP>
+                <StyledHomeContentP>Дата: {seminar.date}</StyledHomeContentP>
+                <StyledHomeContentP>Время: {seminar.time}</StyledHomeContentP>
+                <StyledHomeContentButtonDiv>
+                  <StyledHomeContentEditButton
+                    onClick={() => handleEdit(seminar)}
+                    aria-label={`Редактировать семинар ${seminar.title}`}
+                  >
+                    Редактировать
+                  </StyledHomeContentEditButton>
+                  <StyledHomeContentDeleteButton
+                    onClick={() => handleDelete(seminar.id)}
+                    aria-label={`Удалить семинар ${seminar.title}`}
+                  >
+                    Удалить
+                  </StyledHomeContentDeleteButton>
+                </StyledHomeContentButtonDiv>
+              </StyledHomeContentDiv>
+            </StyledHomeLi>
+          ))}
+        </StyledHomeUl>
+      )}
+
       {/* Модальное окно подтверждения удаления */}
       {showModal && (
         <StyledHomeModalDiv>
